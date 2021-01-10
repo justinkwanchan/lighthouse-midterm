@@ -9,7 +9,7 @@ $login-width: 80vw;
   height: $login-height;
   width: $login-width;
   background-color: white;
-  border-radius: 4em;
+  border-radius: 4rem;
   border: 0.3rem #d5e9ff solid;
   font-size: 3rem;
 
@@ -28,9 +28,29 @@ $login-width: 80vw;
   .user-form {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     height: 100%;
 
+    img {
+      margin: 8rem 0 4rem;
+    }
+
+    h2 {
+      margin: 0 0 1rem;
+    }
+
+    h6 {
+      margin: 0 0 5rem;
+    }
+
+    div {
+      margin-bottom: 2rem;
+
+      input {
+        border-radius: 4rem;
+        border: 0.2rem #378ae2 solid;
+        padding: 2rem 2rem;
+      }
+    }
   }
 }
