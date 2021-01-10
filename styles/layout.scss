@@ -1,10 +1,9 @@
 // See: https://sass-lang.com/
 
-$login-height: 80vh;
-$login-width: 80vw;
-
 body {
   background-color: #EEE;
+  font-size: 24px;
+  font-family: 'Source Sans Pro', sans-serif;
 
   nav {
     display: flex;
