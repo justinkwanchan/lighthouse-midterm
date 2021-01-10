@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/login.css" type="text/css" />
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
@@ -21,6 +22,42 @@
   <%- include('partials/_header') %>
 
   <!--The div element for the map -->
+  <div id="login-overlay">
+    <div id="sign-up">
+      <span id="sign-up-choice">Sign up</span>
+      <span id="login-choice">Login</span>
+    </div>
+
+    <!-- Sign-Up Screen -->
+    <form id="sign-up-screen" class="user-form">
+      <span>Let's Get Started!</span>
+
+      <!-- Email -->
+      <div>
+        <input type="email" id="sign-up-email" name="email" placeholder="Email">
+      </div>
+
+      <!-- Password -->
+      <div>
+        <input type="password" id="sign-up-password" name="password" placeholder="Password">
+      </div>
+    </form>
+
+    <!-- Login Screen -->
+    <form id="login-screen" class="user-form">
+      <span>Let's Get Started!</span>
+
+      <!-- Email -->
+      <div>
+        <input type="email" id="login-email" name="email" placeholder="Email">
+      </div>
+
+      <!-- Password -->
+      <div>
+        <input type="password" id="login-password" name="password" placeholder="Password">
+      </div>
+    </form>
+  </div>
   <div id="map"></div>
 </body>
 

@@ -1,5 +1,8 @@
 // See: https://sass-lang.com/
 
+$login-height: 80vh;
+$login-width: 80vw;
+
 body {
   background-color: #EEE;
 
@@ -9,7 +12,7 @@ body {
     align-items: center;
     padding: 0 1rem;
 
-    #login{
+    #login-buttons {
       display: flex;
       justify-content: space-between;
       min-width: 7em;
