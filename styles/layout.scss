@@ -7,6 +7,21 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 1rem;
+
+    #login{
+      display: flex;
+      justify-content: space-between;
+      min-width: 7em;
+
+      a {
+        text-decoration: none;
+      }
+
+      a, a:visited, a:hover, a:active {
+        color: inherit;
+      }
+    }
   }
 
   h3 {
