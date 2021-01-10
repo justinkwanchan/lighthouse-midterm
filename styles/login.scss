@@ -11,6 +11,8 @@ $login-width: 80vw;
   background-color: white;
   border-radius: 4rem;
   border: 0.3rem #d5e9ff solid;
+  background: rgb(228,227,255);
+  background: linear-gradient(90deg, rgba(228,227,255,1) 0%, rgba(255,255,255,1) 72%, rgba(255,255,255,1) 100%);
   font-size: 3rem;
 
   #sign-up {
@@ -18,11 +20,11 @@ $login-width: 80vw;
   }
 
   #sign-up-screen {
-    display: none;
+    // display: none;
   }
 
   #login-screen {
-    display: flex;
+    display: none;
   }
 
   .user-form {
@@ -41,6 +43,7 @@ $login-width: 80vw;
 
     h6 {
       margin: 0 0 5rem;
+      color: rgb(151, 151, 151);
     }
 
     div {
@@ -48,8 +51,35 @@ $login-width: 80vw;
 
       input {
         border-radius: 4rem;
-        border: 0.2rem #378ae2 solid;
+        border: 0.2rem rgba(0, 0, 0, 0) solid;
         padding: 2rem 2rem;
+        color: #378ae2;
+        font-weight: bold;
+        font-size: 0.8em;
+
+        &:focus {
+          border: 0.2rem #378ae2 solid;
+          outline: none;
+        }
+
+        &:placeholder-shown {
+          color:  #979797;
+        }
+      }
+
+      button {
+        border-radius: 4rem;
+        border: 0.2rem #378ae2 solid;
+        background-color: #378ae2;
+        margin-top: 2rem;
+        padding: 2.2rem 8.4rem;
+        color: white;
+        font-size: 0.8em;
+        font-weight: bold;
+
+        &:focus {
+          outline: none;
+        }
       }
     }
   }
