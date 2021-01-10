@@ -15,16 +15,12 @@ $login-width: 80vw;
   background: linear-gradient(90deg, rgba(228,227,255,1) 0%, rgba(255,255,255,1) 72%, rgba(255,255,255,1) 100%);
   font-size: 3rem;
 
-  #sign-up {
-    display: none;
-  }
-
   #sign-up-screen {
-    // display: none;
+    display: none;
   }
 
   #login-screen {
-    display: none;
+    // display: none;
   }
 
   .user-form {
@@ -34,7 +30,7 @@ $login-width: 80vw;
     height: 100%;
 
     img {
-      margin: 8rem 0 4rem;
+      margin: 7rem 0 4rem;
     }
 
     h2 {
@@ -44,6 +40,11 @@ $login-width: 80vw;
     h6 {
       margin: 0 0 5rem;
       color: rgb(151, 151, 151);
+
+      a {
+        text-decoration: none;
+        color: #378ae2;
+      }
     }
 
     div {
@@ -71,7 +72,7 @@ $login-width: 80vw;
         border-radius: 4rem;
         border: 0.2rem #378ae2 solid;
         background-color: #378ae2;
-        margin-top: 2rem;
+        margin: 2rem 0 3rem;
         padding: 2.2rem 8.4rem;
         color: white;
         font-size: 0.8em;
