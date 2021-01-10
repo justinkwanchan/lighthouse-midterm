@@ -26,6 +26,13 @@ function initMap() {
   // The map, centered at Niagra
   var map = new google.maps.Map(document.getElementById("map"), options);
 
+  // Listen for click on map
+  google.maps.event.addListener(map, 'click',
+  function(event) {
+    // Add marker
+    addMarker({coords:event.latLng});
+  })
+
   // Array of markers
   var markers = [
     {coords:coffee_shop_1, iconImage: "../images/free_breakfast-24px.svg", content: '<h2>Italian Ice Cream</h2>'},
