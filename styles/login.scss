@@ -8,80 +8,129 @@ $login-width: 80vw;
   margin-left: calc((100vw - #{$login-width}) / 2);
   height: $login-height;
   width: $login-width;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: white;
   border-radius: 4rem;
   border: 0.3rem #d5e9ff solid;
   background: rgb(228,227,255);
   background: linear-gradient(90deg, rgba(228,227,255,1) 0%, rgba(255,255,255,1) 72%, rgba(255,255,255,1) 100%);
   font-size: 3rem;
+  overflow: hidden;
 
-  #sign-up-screen {
-    display: none;
+  img {
+    height: 42%;
+    padding: 7rem 0 4rem;
   }
 
-  #login-screen {
-    // display: none;
-  }
-
-  .user-form {
+  #form {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 58%;
+    width: 150vw;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
+    // animation: 3s linear 0s slideleft;
+    // margin-left: 92vw;
 
-    img {
-      margin: 7rem 0 4rem;
+    // #login-screen {
+      //   display: none;
+      // }
+
+    #sign-up-screen {
+      // display: none;
+      visibility: hidden;
     }
 
-    h2 {
-      margin: 0 0 1rem;
-    }
+    .user-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
 
-    h6 {
-      margin: 0 0 5rem;
-      color: rgb(151, 151, 151);
-
-      a {
-        text-decoration: none;
-        color: #378ae2;
+      h2 {
+        margin: 0 0 1rem;
       }
-    }
 
-    div {
-      margin-bottom: 2rem;
+      h6 {
+        margin: 0 0 5rem;
+        color: rgb(151, 151, 151);
 
-      input {
-        border-radius: 4rem;
-        border: 0.2rem rgba(0, 0, 0, 0) solid;
-        padding: 2rem 2rem;
-        color: #378ae2;
-        font-weight: bold;
-        font-size: 0.8em;
+        a {
+          text-decoration: none;
+          color: #378ae2;
+        }
+      }
 
-        &:focus {
+      div {
+        margin-bottom: 2rem;
+
+        input {
+          border-radius: 4rem;
+          border: 0.2rem rgba(0, 0, 0, 0) solid;
+          padding: 2rem 2rem;
+          color: #378ae2;
+          font-weight: bold;
+          font-size: 0.8em;
+
+          &:focus {
+            border: 0.2rem #378ae2 solid;
+            outline: none;
+          }
+
+          &:placeholder-shown {
+            color:  #979797;
+          }
+        }
+
+        button {
+          border-radius: 4rem;
           border: 0.2rem #378ae2 solid;
-          outline: none;
-        }
+          background-color: #378ae2;
+          margin: 2rem 0 3rem;
+          padding: 2.2rem 8.4rem;
+          color: white;
+          font-size: 0.8em;
+          font-weight: bold;
 
-        &:placeholder-shown {
-          color:  #979797;
-        }
-      }
-
-      button {
-        border-radius: 4rem;
-        border: 0.2rem #378ae2 solid;
-        background-color: #378ae2;
-        margin: 2rem 0 3rem;
-        padding: 2.2rem 8.4rem;
-        color: white;
-        font-size: 0.8em;
-        font-weight: bold;
-
-        &:focus {
-          outline: none;
+          &:focus {
+            outline: none;
+          }
         }
       }
+    }
+
+  }
+  .form-animate-left {
+    animation: 0.4s linear 0s slideleft;
+    -webkit-animation-fill-mode: forwards;
+  }
+
+  @keyframes slideleft {
+    from {
+    }
+
+    to {
+      left: 100%;
+      transform: translateX(-100%);
+    }
+  }
+
+  .form-animate-right {
+    animation: 0.4s linear 0s slideright;
+    -webkit-animation-fill-mode: forwards;
+  }
+
+  @keyframes slideright {
+    from {
+      left: 100%;
+      transform: translateX(-100%);
+    }
+
+    to {
+      left: 0%;
+      // transform: translateX(100%);
     }
   }
 }
