@@ -1,11 +1,5 @@
 $(document).ready(function() {
-  $('#test').on('click', function(event) {
-    // event.preventDefault();
-    console.log($(this).parent().parent());
-    console.log($('#login-screen'));
-    // console.log($(this).parent().parent().parent());
-    // console.log($('#form'));
-    // $('#sign-up-screen').css('visibility', 'visible');
+  $('#switch-to-sign-up').on('click', function(event) {
     $('#sign-up-screen').removeClass('form-hidden');
     $(this).parent().parent().parent().addClass("form-animate-left");
     $(this).parent().parent().parent().removeClass("form-animate-right");
@@ -14,8 +8,7 @@ $(document).ready(function() {
     }, 400);
   });
 
-  $('#test2').on('click', function(event) {
-    // event.preventDefault();
+  $('#switch-to-login').on('click', function(event) {
     $('#login-screen').removeClass('form-hidden');
     $(this).parent().parent().parent().addClass("form-animate-right");
     $(this).parent().parent().parent().removeClass("form-animate-left");

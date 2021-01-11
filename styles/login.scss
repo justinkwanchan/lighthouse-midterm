@@ -31,12 +31,6 @@ $login-width: 80vw;
     height: 58%;
     width: 150vw;
     display: flex;
-    // animation: 3s linear 0s slideleft;
-    // margin-left: 92vw;
-
-    // #login-screen {
-      //   display: none;
-      // }
 
     .form-hidden {
       visibility: hidden;
@@ -107,9 +101,6 @@ $login-width: 80vw;
   }
 
   @keyframes slideleft {
-    from {
-    }
-
     to {
       left: 100%;
       transform: translateX(-100%);
@@ -125,11 +116,6 @@ $login-width: 80vw;
     from {
       left: 100%;
       transform: translateX(-100%);
-    }
-
-    to {
-      left: 0%;
-      // transform: translateX(100%);
     }
   }
 }
