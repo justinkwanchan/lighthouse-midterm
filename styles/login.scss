@@ -1,5 +1,5 @@
-$login-height: 80vh;
-$login-width: 80vw;
+$login-height: 98rem;
+$login-width: 49rem;
 
 #login-overlay {
   z-index: 1;
@@ -26,7 +26,7 @@ $login-width: 80vw;
 
   #form {
     position: absolute;
-    left: 0;
+    left: 1rem;
     bottom: 0;
     height: 58%;
     width: 150vw;
@@ -44,6 +44,7 @@ $login-width: 80vw;
 
       h2 {
         margin: 0 0 1rem;
+        font-size: 4.5rem;
       }
 
       h6 {
@@ -103,7 +104,7 @@ $login-width: 80vw;
   @keyframes slideleft {
     to {
       left: 100%;
-      transform: translateX(-100%);
+      transform: translateX(-101%);
     }
   }
 
@@ -115,7 +116,7 @@ $login-width: 80vw;
   @keyframes slideright {
     from {
       left: 100%;
-      transform: translateX(-100%);
+      transform: translateX(-101%);
     }
   }
 }
