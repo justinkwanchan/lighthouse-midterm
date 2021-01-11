@@ -32,6 +32,8 @@ function initMap() {
     function (event) {
       // Add marker
       addMarker({ coords: event.latLng });
+      // Display latitude and longitude of current marker
+      console.log(JSON.stringify(event.latLng.toJSON()));
     })
 
   // // Array of markers
