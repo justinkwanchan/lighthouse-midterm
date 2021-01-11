@@ -1,10 +1,10 @@
-$login-height: 98rem;
-$login-width: 49rem;
+$login-height: 80vh;
+$login-width: 40vh;
 
 #login-overlay {
   z-index: 1;
   position: absolute;
-  margin-top: calc((100vh - #{$login-height}) / 2);
+  margin-top: calc((100vh - #{$login-height}) / 4);
   margin-left: calc((100vw - #{$login-width}) / 2);
   height: $login-height;
   width: $login-width;
@@ -16,12 +16,12 @@ $login-width: 49rem;
   border: 0.3rem #d5e9ff solid;
   background: rgb(228,227,255);
   background: linear-gradient(90deg, rgba(228,227,255,1) 0%, rgba(255,255,255,1) 72%, rgba(255,255,255,1) 100%);
-  font-size: 3rem;
+  font-size: 2.42vh;
   overflow: hidden;
 
   img {
     height: 42%;
-    padding: 7rem 0 4rem;
+    padding: 2.3em 0 1.3em;
   }
 
   #form {
@@ -29,7 +29,7 @@ $login-width: 49rem;
     left: 1rem;
     bottom: 0;
     height: 58%;
-    width: 150vw;
+    width: 185%;
     display: flex;
 
     .form-hidden {
@@ -43,12 +43,12 @@ $login-width: 49rem;
       width: 100%;
 
       h2 {
-        margin: 0 0 1rem;
-        font-size: 4.5rem;
+        margin: 0 0 0.35em;
+        font-size: 1.5em;
       }
 
       h6 {
-        margin: 0 0 5rem;
+        margin: 0 0 2.4em;
         color: rgb(151, 151, 151);
 
         a {
@@ -58,18 +58,18 @@ $login-width: 49rem;
       }
 
       div {
-        margin-bottom: 2rem;
+        margin-bottom: 0.7em;
 
         input {
-          border-radius: 4rem;
-          border: 0.2rem rgba(0, 0, 0, 0) solid;
-          padding: 2rem 2rem;
+          border-radius: 1.6em;
+          border: 0.08em rgba(0, 0, 0, 0) solid;
+          padding: 0.78em 0.78em;
           color: #378ae2;
           font-weight: bold;
           font-size: 0.8em;
 
           &:focus {
-            border: 0.2rem #378ae2 solid;
+            border: 0.08em #378ae2 solid;
             outline: none;
           }
 
@@ -79,11 +79,11 @@ $login-width: 49rem;
         }
 
         button {
-          border-radius: 4rem;
-          border: 0.2rem #378ae2 solid;
+          border-radius: 1.6em;
+          border: none;
           background-color: #378ae2;
-          margin: 2rem 0 3rem;
-          padding: 2.2rem 8.4rem;
+          margin: 0.9em;
+          padding: 0.9em 3.4em;
           color: white;
           font-size: 0.8em;
           font-weight: bold;
@@ -119,4 +119,8 @@ $login-width: 49rem;
       transform: translateX(-101%);
     }
   }
+}
+
+@media only screen and (min-width: 1024px) {
+
 }
