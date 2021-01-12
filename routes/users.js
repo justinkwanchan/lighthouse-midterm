@@ -7,7 +7,7 @@
 
 const express = require('express');
 const router  = express.Router();
-
+const dataBase = {title: "narnia", lat: "0.0", lng: "0.0"};
 module.exports = (db) => {
   router.get("/", (req, res) => {
     db.query(`SELECT * FROM users;`)
@@ -20,6 +20,14 @@ module.exports = (db) => {
           .status(500)
           .json({ error: err.message });
       });
+  });
+  router.post("/", (req, res) => {
+    let name = req.body.name;
+    let lat = req.body.lat;
+    let lng = req.body.lng;
+    dataBase = { title: name, lat: lat, lng: lng };
+    console.log(dataBase);
+    res.redirect("/");
   });
   return router;
 };
