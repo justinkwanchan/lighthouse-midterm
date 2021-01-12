@@ -1,0 +1,133 @@
+$login-height: 80vh;
+$login-width: 40vh;
+
+.overlay-remove {
+  display: none;
+}
+
+.overlay-display {
+  display: flex;
+}
+
+#login-overlay {
+  z-index: 1;
+  position: absolute;
+  margin-top: calc((100vh - #{$login-height}) / 4);
+  margin-left: calc((100vw - #{$login-width}) / 2);
+  height: $login-height;
+  width: $login-width;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  border-radius: 1.4em;
+  border: 0.1em #d5e9ff solid;
+  background: rgb(228,227,255);
+  background: linear-gradient(90deg, rgba(228,227,255,1) 0%, rgba(255,255,255,1) 72%, rgba(255,255,255,1) 100%);
+  font-size: 2.42vh;
+  overflow: hidden;
+
+  img {
+    height: 42%;
+    padding: 2.3em 0 1.3em;
+  }
+
+  #form {
+    position: absolute;
+    left: 1rem;
+    bottom: 0;
+    height: 58%;
+    width: 185%;
+    display: flex;
+
+    .form-hidden {
+      visibility: hidden;
+    }
+
+    .user-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+
+      h2 {
+        margin: 0 0 0.35em;
+        font-size: 1.5em;
+      }
+
+      h6 {
+        margin: 0 0 2.4em;
+        color: rgb(151, 151, 151);
+
+        a {
+          text-decoration: none;
+          color: #378ae2;
+        }
+      }
+
+      div {
+        margin-bottom: 0.7em;
+
+        input {
+          border-radius: 1.6em;
+          border: 0.08em rgba(0, 0, 0, 0) solid;
+          padding: 0.78em 0.78em;
+          color: #378ae2;
+          font-weight: bold;
+          font-size: 0.8em;
+
+          &:focus {
+            border: 0.08em #378ae2 solid;
+            outline: none;
+          }
+
+          &:placeholder-shown {
+            color:  #979797;
+          }
+        }
+
+        button {
+          border-radius: 1.6em;
+          border: none;
+          background-color: #378ae2;
+          margin: 0.9em;
+          padding: 0.9em 3.4em;
+          color: white;
+          font-size: 0.8em;
+          font-weight: bold;
+
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+    }
+
+  }
+  .form-animate-left {
+    animation: 0.4s linear 0s slideleft;
+    -webkit-animation-fill-mode: forwards;
+  }
+
+  @keyframes slideleft {
+    to {
+      left: 100%;
+      transform: translateX(-102%);
+    }
+  }
+
+  .form-animate-right {
+    animation: 0.4s linear 0s slideright;
+    -webkit-animation-fill-mode: forwards;
+  }
+
+  @keyframes slideright {
+    from {
+      left: 100%;
+      transform: translateX(-102%);
+    }
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+
+}
