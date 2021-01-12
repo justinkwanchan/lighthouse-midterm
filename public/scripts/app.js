@@ -27,144 +27,160 @@ function initMap() {
   // The map, centered at Niagra
   let map = new google.maps.Map(document.getElementById("map"), options);
 
-  // Listen for click on map
-  google.maps.event.addListener(map, 'click',
-    function (event) {
-      // Add marker
-      addMarker({ coords: event.latLng });
-      // Display latitude and longitude of current marker
-      console.log(JSON.stringify(event.latLng.toJSON()));
-    })
+  // // Listen for click on map
+  // google.maps.event.addListener(map, 'click',
+  //   function (event) {
+  //     // Add marker
+  //     addMarker({ coords: event.latLng });
+  //     // Display latitude and longitude of current marker
+  //     //console.log(JSON.stringify(event.latLng.toJSON()));
+  //   })
 
-  // // Array of markers
-  // let markers = [
-  //   { coords: coffee_shop_1, iconImage: "../images/free_breakfast-24px.svg", content: '<h2>Italian Ice Cream</h2>' },
-  //   { coords: coffee_shop_2, iconImage: "../images/free_breakfast-24px.svg", content: '<h2>Tim Hortons</h2>' },
-  //   { coords: coffee_shop_3, iconImage: "../images/free_breakfast-24px.svg", content: '<h2>Starbucks</h2>' }
-  // ];
+  // // // Array of markers
+  // // let markers = [
+  // //   { coords: coffee_shop_1, iconImage: "../images/free_breakfast-24px.svg", content: '<h2>Italian Ice Cream</h2>' },
+  // //   { coords: coffee_shop_2, iconImage: "../images/free_breakfast-24px.svg", content: '<h2>Tim Hortons</h2>' },
+  // //   { coords: coffee_shop_3, iconImage: "../images/free_breakfast-24px.svg", content: '<h2>Starbucks</h2>' }
+  // // ];
 
-  // // Loop markers
-  // for (const values of markers) {
-  //   addMarker(values);
+  // // // Loop markers
+  // // for (const values of markers) {
+  // //   addMarker(values);
+  // // }
+
+  // // Add marker function
+  // function addMarker(props) {
+  //   let marker = new google.maps.Marker({
+  //     position: props.coords,
+  //     map: map
+  //   });
+
+  //   // Check for custom icon
+  //   if (props.iconImage) {
+  //     marker.setIcon(props.iconImage);
+  //   }
+
+  //   // Check content
+  //   if (props.content) {
+  //     // Add title
+  //     let infoWindow = new google.maps.InfoWindow({
+  //       content: props.content
+  //     });
+
+  //     marker.addListener('click', function () {
+  //       infoWindow.open(map, marker);
+  //     });
+  //   }
   // }
 
-  // Add marker function
-  function addMarker(props) {
-    let marker = new google.maps.Marker({
-      position: props.coords,
-      map: map
-    });
+  // // Create the search box and link it to the UI element.
+  // const input = document.getElementById("search");
+  // const searchBox = new google.maps.places.SearchBox(input);
+  // //map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-    // Check for custom icon
-    if (props.iconImage) {
-      marker.setIcon(props.iconImage);
-    }
+  // // Bias the SearchBox results towards current map's viewport.
+  // map.addListener("bounds_changed", () => {
+  //   searchBox.setBounds(map.getBounds());
+  // });
+  // let markers = [];
 
-    // Check content
-    if (props.content) {
-      // Add title
-      let infoWindow = new google.maps.InfoWindow({
-        content: props.content
-      });
+  // // Listen for the event fired when the user selects a prediction and retrieve
+  // // more details for that place.
+  // searchBox.addListener("places_changed", () => {
+  //   const places = searchBox.getPlaces();
 
-      marker.addListener('click', function () {
-        infoWindow.open(map, marker);
-      });
-    }
-  }
+  //   if (places.length == 0) {
+  //     return;
+  //   }
+  //   // Clear out the old markers.
+  //   markers.forEach((marker) => {
+  //     marker.setMap(null);
+  //   });
+  //   markers = [];
 
-  // Create the search box and link it to the UI element.
-  const input = document.getElementById("search");
-  const searchBox = new google.maps.places.SearchBox(input);
-  //map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+  //   // For each place, get the icon, name and location.
+  //   const bounds = new google.maps.LatLngBounds();
+  //   places.forEach((place) => {
+  //     if (!place.geometry) {
+  //       console.log("Returned place contains no geometry");
+  //       return;
+  //     }
 
-  // Bias the SearchBox results towards current map's viewport.
-  map.addListener("bounds_changed", () => {
-    searchBox.setBounds(map.getBounds());
-  });
-  let markers = [];
+  //     // Create a marker for each place.
+  //     markers.push(
+  //       new google.maps.Marker({
+  //         map: map,
+  //         title: place.name,
+  //         position: place.geometry.location,
+  //       })
+  //     );
 
-  // Listen for the event fired when the user selects a prediction and retrieve
-  // more details for that place.
-  searchBox.addListener("places_changed", () => {
-    const places = searchBox.getPlaces();
+  //     if (place.geometry.viewport) {
+  //       // Only geocodes have viewport.
+  //       bounds.union(place.geometry.viewport);
+  //     } else {
+  //       bounds.extend(place.geometry.location);
+  //     }
+  //   });
+  //   map.fitBounds(bounds);
+  // });
 
-    if (places.length == 0) {
-      return;
-    }
-    // Clear out the old markers.
-    markers.forEach((marker) => {
-      marker.setMap(null);
-    });
-    markers = [];
+  // // Note: This example requires that you consent to location sharing when
+  // // prompted by your browser. If you see the error "The Geolocation service
+  // // failed.", it means you probably did not give permission for the browser to
+  // // locate you.
+  // let infoWindow = new google.maps.InfoWindow();
+  // const locationButton = document.createElement("button");
+  // locationButton.textContent = "Pan to Current Location";
+  // locationButton.classList.add("geolocation");
+  // map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+  // locationButton.addEventListener("click", () => {
+  //   // Try HTML5 geolocation.
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(
+  //       (position) => {
+  //         const pos = {
+  //           lat: position.coords.latitude,
+  //           lng: position.coords.longitude,
+  //         };
+  //         console.log(pos.lat, pos.lng);
+  //         infoWindow.setPosition(pos);
+  //         infoWindow.setContent("Location found.");
+  //         infoWindow.open(map);
+  //         map.setCenter(pos);
+  //       },
+  //       () => {
+  //         handleLocationError(true, infoWindow, map.getCenter());
+  //       }
+  //     );
+  //   } else {
+  //     // Browser doesn't support Geolocation
+  //     handleLocationError(false, infoWindow, map.getCenter());
+  //   }
+  // });
+  // function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  //   infoWindow.setPosition(pos);
+  //   infoWindow.setContent(
+  //     browserHasGeolocation
+  //       ? "Error: The Geolocation service failed."
+  //       : "Error: Your browser doesn't support geolocation."
+  //   );
+  //   infoWindow.open(map);
+  // }
 
-    // For each place, get the icon, name and location.
-    const bounds = new google.maps.LatLngBounds();
-    places.forEach((place) => {
-      if (!place.geometry) {
-        console.log("Returned place contains no geometry");
-        return;
-      }
-
-      // Create a marker for each place.
-      markers.push(
-        new google.maps.Marker({
-          map: map,
-          title: place.name,
-          position: place.geometry.location,
-        })
-      );
-
-      if (place.geometry.viewport) {
-        // Only geocodes have viewport.
-        bounds.union(place.geometry.viewport);
-      } else {
-        bounds.extend(place.geometry.location);
-      }
-    });
-    map.fitBounds(bounds);
-  });
-
-  // Note: This example requires that you consent to location sharing when
-  // prompted by your browser. If you see the error "The Geolocation service
-  // failed.", it means you probably did not give permission for the browser to
-  // locate you.
-  let infoWindow = new google.maps.InfoWindow();
-  const locationButton = document.createElement("button");
-  locationButton.textContent = "Pan to Current Location";
-  locationButton.classList.add("geolocation");
-  map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
-  locationButton.addEventListener("click", () => {
-    // Try HTML5 geolocation.
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          };
-          infoWindow.setPosition(pos);
-          infoWindow.setContent("Location found.");
-          infoWindow.open(map);
-          map.setCenter(pos);
-        },
-        () => {
-          handleLocationError(true, infoWindow, map.getCenter());
-        }
-      );
-    } else {
-      // Browser doesn't support Geolocation
-      handleLocationError(false, infoWindow, map.getCenter());
-    }
+  const directionsService = new google.maps.DirectionsService();
+  const directionsRenderer = new google.maps.DirectionsRenderer();
+  directionsRenderer.setMap(map);
+  document.getElementById("submit").addEventListener("click", () => {
+    calculateAndDisplayRoute(directionsService, directionsRenderer);
   });
 }
 
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-  infoWindow.setPosition(pos);
-  infoWindow.setContent(
-    browserHasGeolocation
-      ? "Error: The Geolocation service failed."
-      : "Error: Your browser doesn't support geolocation."
-  );
-  infoWindow.open(map);
+function calculateAndDisplayRoute(directionsService, directionsRenderer) {
+  directionsService.route(
+    {
+      origin: "43.08819077186206,-79.07223055850586",
+      destination: "43.0958356243389,-79.07055451075264",
+      travelMode: google.maps.TravelMode.DRIVING,
+    });
 }
