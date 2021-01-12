@@ -81,7 +81,22 @@
       </form>
     </div>
   </div>
-  <div id="map"></div>
+  <div class="main-page">
+    <div class="form-pins">
+      <form action="/login" method="POST">
+        <div>
+          <label for="pins-name">Name: </label>
+          <input type="text" name="pins-name" id="pins-name" placeholder="Enter name">
+        </div>
+        <div>
+          <label for="pins-lat-lng">LatLng: </label>
+          <input type="text" name="pins-lat-lng" id="pins-lat-lng" placeholder="Enter name">
+        </div>
+      </form>
+    </div>
+    <div id="map"></div>
+  </div>
+
 </body>
 
 </html>
