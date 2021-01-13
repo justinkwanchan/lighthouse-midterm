@@ -54,7 +54,14 @@ app.use("/register", usersDBRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  res.render("index");
+  db.query(`SELECT * FROM users;`).then(data => {
+    // console.log(data.rows);
+    const user = data.rows.filter(row => row.session_id === req.session.user_id);
+    const templateVars = {
+      user_info: user[0]
+    };
+    res.render("index", templateVars);
+  }).catch(err => console.error('query error:', err.stack));;
 });
 
 app.listen(PORT, () => {

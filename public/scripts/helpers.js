@@ -9,7 +9,7 @@ const generateRandomString = function () {
 };
 
 // Add user to database
-const addUser = function (db, user) {
+const addUser = function(db, user) {
   return db.query(`
     INSERT INTO users (session_id, email, password)
     VALUES ($1, $2, $3)
@@ -20,7 +20,7 @@ const addUser = function (db, user) {
 };
 
 //
-const getUserWithEmail = function (data, email) {
+const getUserWithEmail = function(data, email) {
   for (const row of data) {
     if (row.email === email) {
       return row;

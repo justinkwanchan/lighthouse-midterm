@@ -5,6 +5,7 @@ module.exports = (db) => {
 
   const { generateRandomString, addUser, getUserWithEmail } = require('../public/scripts/helpers');
 
+  // Register a new email
   router.post("/", (req, res) => {
     db.query(`SELECT * FROM users;`).then(data => {
       // Create function for registration and another for login
