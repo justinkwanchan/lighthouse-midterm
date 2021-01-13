@@ -15,13 +15,12 @@ module.exports = (db) => {
       } else if (getUserWithEmail(data.rows, req.body.email) !== null) {
         res.status(400).send('<h2>400 - Email is taken</h2>');
       } else {
-        addUser(db, req.body);
         const newSessionID = generateRandomString();
         const userData = { newSessionID, ...req.body };
+
         addUser(db, userData);
         req.session.user_id = newSessionID;
-        console.log(req.session);
-        // console.log(req.params);
+
         res.redirect("/");
       }
     })
