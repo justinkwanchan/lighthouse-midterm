@@ -172,21 +172,17 @@ $(() => {
   const createForm = function (latitude, longitude, pinCount) {
     let $form = $(`
                     <div class="pin-data">
-                      <div class="title">
+                      <div class="pin-title">
                         <label for="pins-name">Title</label>
-                        <input type="text" name="pins-name" placeholder="Enter name">
+                        <input type="text" name="pins-name">
                       </div>
-                      <div class="description">
+                      <div class="pin-description">
                         <label for="pins-name">Description</label>
                         <textarea name="text"></textarea>
                       </div>
-                      <div class="dropdown">
-                        <button id="pin-button-${pinCount}" class="dropbtn">Dropdown</button>
-                        <div class="dropdown-content">
-                          <a href="#">Link 1</a>
-                          <a href="#">Link 2</a>
-                          <a href="#">Link 3</a>
-                        </div>
+                      <div class="pin-image">
+                        <label for="pins-image">Image URL</label>
+                        <input type="text" name="pins-image">
                       </div>
                     </div>
                     `);
