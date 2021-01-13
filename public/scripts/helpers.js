@@ -24,13 +24,17 @@ const getUserWithEmail = function (db, email) {
   return db.query(`SELECT * FROM users;`)
     .then(data => {
       for (const row of data.rows) {
+        console.log(row.email);
+        console.log(email);
+        console.log(row.email === email);
         if (row.email === email) {
           return row;
         }
       }
+      console.log(null);
       return null;
     })
     .catch(err => console.error('query error:', err.stack));
 };
 
-module.exports = { addUser, getUserWithEmail };
+module.exports = { generateRandomString, addUser, getUserWithEmail };
