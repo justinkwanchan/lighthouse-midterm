@@ -31,7 +31,7 @@ $(() => {
         // Add marker
         addMarker({ coords: event.latLng });
         // Display latitude and longitude of current marker
-        console.log(JSON.stringify(event.latLng.toJSON().lat));
+        console.log(JSON.stringify(event.latLng.toJSON()));
         let lat = JSON.stringify(event.latLng.toJSON().lat);
         let lng = JSON.stringify(event.latLng.toJSON().lng);
         $(".form-pins").prepend(createForm(lat, lng));
@@ -161,16 +161,18 @@ $(() => {
   }
   initMap();
   const createForm = function (data1, data2) {
-    let $form = $(`<form action="/" method="POST">
+    let $form = $(`<form action="/userData" method="POST">
                     <div>
                       <label for="pins-name">Name: </label>
                       <input type="text" name="pins-name" id="pins-name" placeholder="Enter name">
                     </div>
                     <div>
-                      <label for="pins-lat-lng">Lat: ${data1}</label>
+                      <label for="pins-lat">Lat: ${data1}</label>
+                      <input type="hidden" id="pins-lat" name="pins-lat" value=${data1}>
                     </div>
                     <div>
-                      <label for="pins-lat-lng">Lng: ${data2}</label>
+                      <label for="pins-lng">Lng: ${data2}</label>
+                      <input type="hidden" id="pins-lng" name="pins-lng" value=${data2}>
                     </div>
                     <button type="submit">Save</button>
                   </form>`);
