@@ -27,16 +27,21 @@ $(() => {
 
     $(".form-pins").find(".submit-button").addClass("hide-button");
     $(".form-pins").find(".pins-list").addClass("hide-button");
+
+    let pinCount = 0;
+
     // Listen for click on map
     google.maps.event.addListener(map, 'click',
       function (event) {
+        pinCount++;
+
         // Add marker
         addMarker({ coords: event.latLng });
         // Display latitude and longitude of current marker
         console.log(JSON.stringify(event.latLng.toJSON()));
         let lat = JSON.stringify(event.latLng.toJSON().lat);
         let lng = JSON.stringify(event.latLng.toJSON().lng);
-        $(".form-pins-data").prepend(createForm(lat, lng));
+        $("#pins").append(createForm(lat, lng, pinCount));
         $(".form-pins").find(".pins-list").removeClass("hide-button");
         $(".form-pins").find(".submit-button").removeClass("hide-button");
       })
@@ -164,23 +169,38 @@ $(() => {
     });
   }
   initMap();
-  const createForm = function (data1, data2) {
+  const createForm = function (latitude, longitude, pinCount) {
     let $form = $(`
-                    <div>
-                      <label for="pins-name">Name: </label>
-                      <input type="text" name="pins-name" id="pins-name" placeholder="Enter name">
-                    </div>
-                    <div>
-                      <label for="pins-lat">Lat: ${data1}</label>
-                      <input type="hidden" id="pins-lat" name="pins-lat" value=${data1}>
-                    </div>
-                    <div>
-                      <label for="pins-lng">Lng: ${data2}</label>
-                      <input type="hidden" id="pins-lng" name="pins-lng" value=${data2}>
+                    <div class="pin-data">
+                      <div class="title">
+                        <label for="pins-name">Title</label>
+                        <input type="text" name="pins-name" placeholder="Enter name">
+                      </div>
+                      <div class="description">
+                        <label for="pins-name">Description</label>
+                        <textarea name="text"></textarea>
+                      </div>
+                      <div class="dropdown">
+                        <button id="pin-button-${pinCount}" class="dropbtn">Dropdown</button>
+                        <div class="dropdown-content">
+                          <a href="#">Link 1</a>
+                          <a href="#">Link 2</a>
+                          <a href="#">Link 3</a>
+                        </div>
+                      </div>
                     </div>
                     `);
     return $form;
   }
+
+  // < div >
+  // <label for="pins-lat">Lat: ${latitude}</label>
+  // <input type="hidden" id="pins-lat" name="pins-lat" value=${latitude}>
+  // </div>
+  // <div>
+  // <label for="pins-lng">Lng: ${longitude}</label>
+  // <input type="hidden" id="pins-lng" name="pins-lng" value=${longitude}>
+  // </div>
 
   function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
