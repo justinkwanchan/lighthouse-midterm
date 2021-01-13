@@ -36,10 +36,10 @@ const addPins = function(db, data) {
   let loopPinsData = function() {
     for (let i = 0; i < data.title.length; i++) {
       db.query(`
-      INSERT INTO pins (name, latitude, longitude)
-      VALUES ($1, $2, $3)
+      INSERT INTO pins (user_id, list_name, name, latitude, longitude)
+      VALUES ($1, $2, $3, $4, $5)
       RETURNING *;
-    `, [data.title[i], data.lat[i], data.lng[i]])
+    `, [data.userId, data.list, data.title[i], data.lat[i], data.lng[i]])
       .then(res => res.rows[0])
       .catch(err => console.error('query error', err.stack))
     }
