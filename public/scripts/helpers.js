@@ -33,13 +33,18 @@ const getUserWithEmail = function(data, email) {
 const addPins = function(db, data) {
   console.log("HERE IS THE DATA.....");
   console.log(data);
-  return db.query(`
-    INSERT INTO pins (name, lat, lng)
-    VALUES ($1, $2, $3)
-    RETURNING *;
-  `, [data.title, data.lat, data.lng])
-    .then(res => res.rows[0])
-    .catch(err => console.error('query error', err.stack))
+  let loopPinsData = function() {
+    for (let i = 0; i < data.title.length; i++) {
+      db.query(`
+      INSERT INTO pins (name, latitude, longitude)
+      VALUES ($1, $2, $3)
+      RETURNING *;
+    `, [data.title[i], data.lat[i], data.lng[i]])
+      .then(res => res.rows[0])
+      .catch(err => console.error('query error', err.stack))
+    }
+  }
+  return loopPinsData();
 }
 
 module.exports = { generateRandomString, addUser, getUserWithEmail, addPins };
