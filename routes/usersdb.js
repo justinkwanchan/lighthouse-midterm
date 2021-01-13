@@ -16,12 +16,11 @@ module.exports = (db) => {
         res.status(400).send('<h2>400 - Email is taken</h2>');
       } else {
         addUser(db, req.body);
+        // req.session.user_id = req.params.id;
+        console.log(req.session);
+        console.log(req.params);
         res.redirect("/");
       }
-
-      // const users = data.rows;
-      // console.log(users);
-      // res.json({ users });
     })
     .catch(err => console.error('query error:', err.stack));
   });
