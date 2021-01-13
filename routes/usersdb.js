@@ -6,7 +6,7 @@ module.exports = (db) => {
   const { generateRandomString, addUser, getUserWithEmail } = require('../public/scripts/helpers');
 
   // Register a new email
-  router.post("/", (req, res) => {
+  router.post("/register", (req, res) => {
     db.query(`SELECT * FROM users;`).then(data => {
       // Create function for registration and another for login
 
@@ -26,6 +26,12 @@ module.exports = (db) => {
       }
     })
     .catch(err => console.error('query error:', err.stack));
+  });
+
+  // Log out
+  router.post("/logout", (req, res) => {
+    req.session.user_id = null;
+    res.redirect("/");
   });
 
   return router;

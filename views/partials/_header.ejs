@@ -5,7 +5,10 @@
       <input id="search" class="controls" type="text" placeholder="Search..." />
     </div>
     <% if (user_info) { %>
-      <h4><%= user_info.email %></h4>
+      <form action="/logout" method="post">
+        <h4><%= user_info.email %></h4>
+        <button id="logout-button">Logout</button>
+      </form>
     <% } else { %>
       <a href="#" id="login-button">Login</a>
     <% } %>
