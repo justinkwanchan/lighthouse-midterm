@@ -4,6 +4,13 @@
       <h3>My Google Maps Demo</h3>
       <input id="search" class="controls" type="text" placeholder="Search..." />
     </div>
-    <a href="#" id="login-button">Login</a>
+    <% if (user_info) { %>
+      <form action="/logout" method="post">
+        <h4><%= user_info.email %></h4>
+        <button id="logout-button">Logout</button>
+      </form>
+    <% } else { %>
+      <a href="#" id="login-button">Login</a>
+    <% } %>
   </nav>
 </header>
