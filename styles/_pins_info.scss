@@ -1,19 +1,74 @@
 .form-pins {
+  padding: 0 1rem;
+
   .form-pins-data {
     #pins {
       .pin-data {
+        padding: 0 0 1rem 0;
+        margin: 0 0 1rem 0;
+        border-bottom: 0.2rem solid black;
+
+        h3 {
+          margin: 0 0 0.5rem 0;
+          color: black;
+        }
 
         div {
           display: flex;
           flex-direction: column;
           margin-bottom: 0.5rem;
 
-          label {
-            font-size: large;
-            font-weight: bold;
+          textarea {
+            height: 4.5em;
+            resize: none;
           }
         }
       }
+    }
+
+    button {
+      border-radius: 0.5em;
+      border: none;
+      background-color: #378ae2;
+      margin-top: 0.5em;
+      padding: 0.4em 1.2em;
+      color: white;
+      font-size: 0.8em;
+      font-weight: bold;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .pins-list {
+      label {
+        font-size: 1.17em;
+      }
+
+      input {
+        margin-top: 0.55rem;
+      }
+    }
+
+  }
+
+  label {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  input, textarea {
+    border: 0.08em solid black;
+    border-radius: 0.5em;
+    padding: 0.25em 0.4em;
+    color: #378ae2;
+    font-weight: bold;
+    font-size: 0.8em;
+
+    &:focus {
+      border: 0.08em #378ae2 solid;
+      outline: none;
     }
   }
 }

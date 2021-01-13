@@ -172,13 +172,14 @@ $(() => {
   const createForm = function (latitude, longitude, pinCount) {
     let $form = $(`
                     <div class="pin-data">
+                      <h3>Pin ${pinCount}</h3>
                       <div class="pin-title">
                         <label for="pins-name">Title</label>
                         <input type="text" name="pins-name">
                       </div>
                       <div class="pin-description">
                         <label for="pins-name">Description</label>
-                        <textarea name="text"></textarea>
+                        <textarea id="test${pinCount}" class="pin-description-textarea" name="text"></textarea>
                       </div>
                       <div class="pin-image">
                         <label for="pins-image">Image URL</label>
