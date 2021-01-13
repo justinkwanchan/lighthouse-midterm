@@ -19,7 +19,7 @@ const addUser = function(db, user) {
     .catch(err => console.error('query error', err.stack))
 };
 
-//
+// Return user information from email
 const getUserWithEmail = function(data, email) {
   for (const row of data) {
     if (row.email === email) {
