@@ -34,7 +34,7 @@ $(() => {
         console.log(JSON.stringify(event.latLng.toJSON()));
         let lat = JSON.stringify(event.latLng.toJSON().lat);
         let lng = JSON.stringify(event.latLng.toJSON().lng);
-        $(".form-pins").prepend(createForm(lat, lng));
+        $(".form-pins-data").prepend(createForm(lat, lng));
       })
 
     // // Array of markers
@@ -161,7 +161,7 @@ $(() => {
   }
   initMap();
   const createForm = function (data1, data2) {
-    let $form = $(`<form action="/userData" method="POST">
+    let $form = $(`
                     <div>
                       <label for="pins-name">Name: </label>
                       <input type="text" name="pins-name" id="pins-name" placeholder="Enter name">
@@ -174,8 +174,7 @@ $(() => {
                       <label for="pins-lng">Lng: ${data2}</label>
                       <input type="hidden" id="pins-lng" name="pins-lng" value=${data2}>
                     </div>
-                    <button type="submit">Save</button>
-                  </form>`);
+                    `);
     return $form;
   }
 
