@@ -29,4 +29,22 @@ const getUserWithEmail = function(data, email) {
   return null;
 };
 
-module.exports = { generateRandomString, addUser, getUserWithEmail };
+// Add pin's data
+const addPins = function(db, data) {
+  console.log("HERE IS THE DATA.....");
+  console.log(data);
+  let loopPinsData = function() {
+    for (let i = 0; i < data.title.length; i++) {
+      db.query(`
+      INSERT INTO pins (user_id, list_name, name, latitude, longitude)
+      VALUES ($1, $2, $3, $4, $5)
+      RETURNING *;
+    `, [data.userId, data.list, data.title[i], data.lat[i], data.lng[i]])
+      .then(res => res.rows[0])
+      .catch(err => console.error('query error', err.stack))
+    }
+  }
+  return loopPinsData();
+}
+
+module.exports = { generateRandomString, addUser, getUserWithEmail, addPins };

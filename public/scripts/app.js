@@ -26,6 +26,7 @@ $(() => {
     let map = new google.maps.Map(document.getElementById("map"), options);
 
     $(".form-pins").find(".submit-button").addClass("hide-button");
+    $(".form-pins").find(".pins-list").addClass("hide-button");
     // Listen for click on map
     google.maps.event.addListener(map, 'click',
       function (event) {
@@ -36,6 +37,7 @@ $(() => {
         let lat = JSON.stringify(event.latLng.toJSON().lat);
         let lng = JSON.stringify(event.latLng.toJSON().lng);
         $(".form-pins-data").prepend(createForm(lat, lng));
+        $(".form-pins").find(".pins-list").removeClass("hide-button");
         $(".form-pins").find(".submit-button").removeClass("hide-button");
       })
 
