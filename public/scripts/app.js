@@ -184,8 +184,13 @@ $(() => {
                         <textarea id="test${pinCount}" class="pin-description-textarea" name="text"></textarea>
                       </div>
                       <div class="pin-image">
-                        <label for="pins-image">Image URL</label>
-                        <input type="text" name="pins-image">
+                        <label for="cars">Icon</label>
+                        <select name="pin-icon">
+                          <option value="cafe">☕</option>
+                          <option value="restaurant">🍴</option>
+                          <option value="bar">🍺</option>
+                          <option value="sports">️⚽️</option>
+                        </select>
                       </div>
                     </div>
                     `);
