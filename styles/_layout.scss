@@ -7,6 +7,7 @@ body {
   background-color: #EEE;
   font-size: 24px;
   font-family: 'Source Sans Pro', sans-serif;
+  overflow-y: hidden;
 
   nav {
     position: fixed;
@@ -32,11 +33,8 @@ body {
 
     #map {
       margin-top: 128px;
-      height: 85vh;
-      /* The height is 400 pixels */
+      height: calc(100vh - 128px);
       width: 100vw;
-      /* The width is the width of the web page */
-      // flex-basis: 100%;
       order: 0;
 
       .geolocation {
