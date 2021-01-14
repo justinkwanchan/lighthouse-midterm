@@ -6,15 +6,28 @@ module.exports = (db) => {
   const { addPins } = require('../public/scripts/helpers');
 
   router.post("/", (req, res) => {
-    let userId = req.session.user_id;
-    let list = req.body['pins-list'];
-    let location = req.body['pins-name'];
-    let lat = req.body['pins-lat'];
-    let lng = req.body['pins-lng'];
-    dataBase = { userId: userId, list: list, title: location, lat: lat, lng: lng };
+    let pinCount = 1;
+    const inputArray = [];
+
+    while (req.body[`pins-name${pinCount}`]) {
+      inputArray.push({
+        name: req.body[`pins-name${pinCount}`],
+        desc: req.body[`pins-desc${pinCount}`],
+        icon: req.body[`pins-icon${pinCount}`],
+        lat: req.body[`pins-lat${pinCount}`],
+        lng: req.body[`pins-lng${pinCount}`]
+      });
+      pinCount++;
+    }
+
+    const dataObj = {
+      userId: req.session.user_id,
+      list: req.body[`pins-list`],
+      inputArray
+    }
+
     console.log("*************************************");
-    console.log(dataBase);
-    addPins(db, dataBase);
+    addPins(db, dataObj);
     res.redirect("/");
   });
   return router;
