@@ -53,30 +53,31 @@ $(() => {
     //   addMarker(values);
     // }
 
-    // Add marker function
-    function addMarker(props) {
-      let marker = new google.maps.Marker({
-        position: props.coords,
-        map: map
+  // Add marker function
+  const addMarker = function(props) {
+    let marker = new google.maps.Marker({
+      position: props.coords,
+      map: map
+    });
+
+    // Check for custom icon
+    if (props.iconImage) {
+      marker.setIcon(props.iconImage);
+    }
+
+    // Check content
+    if (props.content) {
+      // Add title
+      let infoWindow = new google.maps.InfoWindow({
+        content: props.content
       });
 
-      // Check for custom icon
-      if (props.iconImage) {
-        marker.setIcon(props.iconImage);
-      }
-
-      // Check content
-      if (props.content) {
-        // Add title
-        let infoWindow = new google.maps.InfoWindow({
-          content: props.content
-        });
-
-        marker.addListener('click', function () {
-          infoWindow.open(map, marker);
-        });
-      }
+      marker.addListener('click', function () {
+        infoWindow.open(map, marker);
+      });
     }
+    return marker;
+  }
 
     // Create the search box and link it to the UI element.
     const input = document.getElementById("search");
@@ -164,7 +165,7 @@ $(() => {
     });
   }
   initMap();
-  const createForm = function (data1, data2) {
+  const createForm = function(data1, data2) {
     let $form = $(`
                     <div>
                       <label for="pins-name">Name: </label>
