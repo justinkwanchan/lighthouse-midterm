@@ -7,6 +7,8 @@ CREATE TABLE pins (
 
   list_name VARCHAR(255) NOT NULL,
   name VARCHAR(255) NOT NULL,
+  description TEXT,
+  icon VARCHAR(255),
   latitude NUMERIC NOT NULL,
   longitude NUMERIC NOT NULL
 );
