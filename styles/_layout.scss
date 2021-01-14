@@ -9,6 +9,9 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
 
   nav {
+    position: fixed;
+    height: 128px;
+    width: 100vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -28,11 +31,12 @@ body {
     display: flex;
 
     #map {
-      height: 90vh;
+      margin-top: 128px;
+      height: 85vh;
       /* The height is 400 pixels */
-      //width: 100%;
+      width: 100vw;
       /* The width is the width of the web page */
-      flex-basis: 75%;
+      // flex-basis: 100%;
       order: 0;
 
       .geolocation {

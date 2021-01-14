@@ -1,5 +1,16 @@
+.pin-info-show {
+  display: block;
+}
+
+.pin-info-hide {
+  display: none;
+}
+
 .form-pins {
+  margin-top: 128px;
+  height: 100vh;
   padding: 0 1rem;
+  overflow-y: auto;
 
   .form-pins-data {
     #pins {

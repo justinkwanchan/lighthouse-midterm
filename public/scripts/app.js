@@ -44,6 +44,8 @@ $(() => {
         $("#pins").append(createForm(lat, lng, pinCount));
         $(".form-pins").find(".pins-list").removeClass("hide-button");
         $(".form-pins").find(".submit-button").removeClass("hide-button");
+        $(".form-pins").addClass("pin-info-show");
+        $(".form-pins").removeClass("pin-info-hide");
       })
 
     // // Array of markers
@@ -172,7 +174,7 @@ $(() => {
   const createForm = function (latitude, longitude, pinCount) {
     let $form = $(`
                     <div class="pin-data">
-                      <h3>Pin ${pinCount}</h3>
+                      <h3>#${pinCount}</h3>
                       <div class="pin-title">
                         <label for="pins-name">Title</label>
                         <input type="text" name="pins-name">
