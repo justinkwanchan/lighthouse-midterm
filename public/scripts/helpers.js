@@ -33,18 +33,39 @@ const getUserWithEmail = function(data, email) {
 const addPins = function(db, data) {
   console.log("HERE IS THE DATA.....");
   console.log(data);
-  let loopPinsData = function() {
-    for (let i = 0; i < data.title.length; i++) {
-      db.query(`
-      INSERT INTO pins (user_id, list_name, name, latitude, longitude)
-      VALUES ($1, $2, $3, $4, $5)
-      RETURNING *;
-    `, [data.userId, data.list, data.title[i], data.lat[i], data.lng[i]])
-      .then(res => res.rows[0])
-      .catch(err => console.error('query error', err.stack))
-    }
-  }
-  return loopPinsData();
+
+  db.query(`
+    INSERT INTO maps (user_id, name) VALUES (${data.userID}, ${data.list})
+    RETURNING *;
+  `)
+    .then(res => {
+      console.log(res.rows[0]);
+      // let dbQuery = `
+      //   INSERT INTO pins (map_id, name, description, icon, latitude, longitude)
+      //   VALUES
+      // `;
+
+      // for (let i = 0; i < data.inputArray.length; i++) {
+      //   dbQuery += `($${1 + 5 * i}, $${2 + 5 * i}, $${3 + 5 * i}, $${4 + 5 * i}, $${5 + 5 * i}),`
+      // }
+      // dbQuery += ';';
+      // console.log(dbQuery);
+
+      // let args = [];
+      // for (const row of data.inputArray) {
+      //   args.push(res.rows[0].id, row.name, row.desc, row.icon, row.lat, row.lng);
+      // }
+
+      // db.query(dbQuery, args);
+    })
+    .catch(err => console.error('query error', err.stack));
+  // let loopPinsData = function() {
+  //   for (let i = 0; i < data.title.length; i++) {
+  //     db.query(dbQuery, [data.userId, data.list, data.title[i], data.lat[i], data.lng[i]]);
+
+  //   }
+  // }
+  // return loopPinsData();
 }
 
 module.exports = { generateRandomString, addUser, getUserWithEmail, addPins };

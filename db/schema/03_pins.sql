@@ -5,7 +5,7 @@ CREATE TABLE pins (
   id SERIAL PRIMARY KEY NOT NULL,
   map_id INTEGER REFERENCES maps(id) ON DELETE CASCADE,
 
-  list_name VARCHAR(255) NOT NULL,
+  name VARCHAR(255),
   description TEXT,
   icon VARCHAR(255),
   latitude NUMERIC NOT NULL,

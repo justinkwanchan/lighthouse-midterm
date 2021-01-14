@@ -21,7 +21,7 @@ module.exports = (db) => {
     }
 
     const dataObj = {
-      userId: req.session.user_id,
+      userID: req.session.user_id,
       list: req.body[`pins-list`],
       inputArray
     }
