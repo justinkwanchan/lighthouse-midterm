@@ -15,17 +15,12 @@ module.exports = (db) => {
       latitude: [],
       longitude: [],
     };
-    db.query(`
-    SELECT * FROM pins
-    JOIN maps ON maps.id = map_id
-    WHERE user_id = $1;
-    `, [req.session.user_id])
-    .then(response => {
       db.query(`
       SELECT * FROM users
       JOIN maps ON session_id = maps.user_id
-      JOIN pins ON maps.id = map_id;
-      `).then(data => {
+      JOIN pins ON maps.id = map_id
+      WHERE user_id = $1;
+      `, [req.session.user_id]).then(data => {
           console.log(data.rows);
           const user = data.rows.filter(row => row.session_id === req.session.user_id);
           templateVars.user_info = user[0];
@@ -43,7 +38,6 @@ module.exports = (db) => {
           res.render("user_data", templateVars);
 
         }).catch(err => console.error('query error:', err.stack));
-      });
   });
 
   // Register a new email
