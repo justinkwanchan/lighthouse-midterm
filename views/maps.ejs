@@ -31,25 +31,23 @@
   <%- include('partials/_header') %>
 
     <div class="main-page">
-      <h3><%= list_name %>></h3>
+      <h3>Saved Maps</h3>
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">Title</th>
-            <th scope="col">Description</th>
-            <th scope="col">Icon</th>
+            <th scope="col">Map Name</th>
+            <th scope="col">Show</th>
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
           </tr>
         </thead>
         <tbody>
-          <% for(const pin in pins) { %>
+          <% for(const map in maps) { %>
             <tr>
-              <td><%= pin.title %></td>
-              <td><%= pin.description %></td>
-              <td><%= pin.icon %></td>
-              <td><form method="GET" action="/urls/<%= pin.id %>/edit"><button type="submit">Edit</button></form></td>
-              <td><form method="POST" action="/urls/<%= pin.id %>/delete?_method=DELETE"><button type="submit">Delete</button></form></td>
+              <td><%= maps.name %></td>
+              <td><form method="GET" action="/userData/<%= maps.id %>/edit"><button type="submit">Show</button></form></td>
+              <td><form method="GET" action="/userData/<%= maps.id %>/edit"><button type="submit">Edit</button></form></td>
+              <td><form method="POST" action="/userData/<%= maps.id %>/delete?_method=DELETE"><button type="submit">Delete</button></form></td>
             </tr>
           <% } %>
         </tbody>
