@@ -1,33 +1,30 @@
 const express = require('express');
 const router = express.Router();
-let dataBase = { userId: "34r5dw3", list: "myList", title: "narnia", lat: "0.0", lng: "0.0" };
+let dataBase = { userId: "34r5dw3", list: "myList", title: "narnia", desc: "fantasy", icon: "sports", lat: "0.0", lng: "0.0" };
 module.exports = (db) => {
 
   const { addPins } = require('../public/scripts/helpers');
 
   router.post("/", (req, res) => {
-    let pinCount = 1;
-    const inputArray = [];
-
-    while (req.body[`pins-name${pinCount}`]) {
-      inputArray.push({
-        name: req.body[`pins-name${pinCount}`],
-        desc: req.body[`pins-desc${pinCount}`],
-        icon: req.body[`pins-icon${pinCount}`],
-        lat: req.body[`pins-lat${pinCount}`],
-        lng: req.body[`pins-lng${pinCount}`]
-      });
-      pinCount++;
-    }
-
-    const dataObj = {
-      userID: req.session.user_id,
-      list: req.body[`pins-list`],
-      inputArray
-    }
-
+    const userId = req.session.user_id;
+    const list = req.body['pins-list'];
+    const location = req.body['pins-name'];
+    const desc = req.body['pins-desc'];
+    const icon = req.body['pins-icon'];
+    const lat = req.body['pins-lat'];
+    const lng = req.body['pins-lng'];
+    dataBase = {
+      userId,
+      list,
+      title: location,
+      desc,
+      icon,
+      lat,
+      lng
+    };
     console.log("*************************************");
-    addPins(db, dataObj);
+    console.log(dataBase);
+    addPins(db, dataBase);
     res.redirect("/");
   });
   return router;
