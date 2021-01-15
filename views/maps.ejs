@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Maps</title>
+
+  <!-- Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bungee&family=Source+Sans+Pro:ital,wght@0,300;0,700;1,300;1,700&display=swap"
+    rel="stylesheet">
+
+  <!-- App CSS -->
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/styles.css" type="text/css" />
+
+  <!-- App Scripts -->
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+  <script type="text/javascript" src="/scripts/login.js"></script>
+  <script type="text/javascript" src="/scripts/pins.js"></script>
+
+  <!-- External Scripts -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiRcxn1kSOj0mSXNBoGX7XnaP5c3-MhqQ&callback=initMap&&libraries=places&v=weekly"
+    defer></script>
+</head>
+
+<body>
+
+  <%- include('partials/_header') %>
+
+    <div class="main-page">
+      <h3><%= list_name %>></h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Icon</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(const pin in pins) { %>
+            <tr>
+              <td><%= pin.title %></td>
+              <td><%= pin.description %></td>
+              <td><%= pin.icon %></td>
+              <td><form method="GET" action="/urls/<%= pin.id %>/edit"><button type="submit">Edit</button></form></td>
+              <td><form method="POST" action="/urls/<%= pin.id %>/delete?_method=DELETE"><button type="submit">Delete</button></form></td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+
+</body>
+
+</html>

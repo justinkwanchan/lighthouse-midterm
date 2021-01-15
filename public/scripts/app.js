@@ -176,37 +176,37 @@ $(() => {
   initMap();
   const createForm = function (latitude, longitude, pinCount) {
     let $form = $(`
-                    <div class="pin-data">
-                      <h3>#${pinCount}</h3>
-                      <div class="pin-title">
-                        <label for="pins-name">Title</label>
-                        <input type="text" name="pins-name">
-                      </div>
-                      <div class="pin-description">
-                        <label for="pins-name">Description</label>
-                        <textarea id="test${pinCount}" class="pin-description-textarea" name="text"></textarea>
-                      </div>
-                      <div>
-                        <input type="hidden" id="pins-lat" name="pins-lat" value=${latitude}>
-                      </div>
-                      <div>
-                        <input type="hidden" id="pins-lng" name="pins-lng" value=${longitude}>
-                      </div>
-                      <div class="pin-image">
-                        <label for="cars">Icon</label>
-                        <select name="pin-icon">
-                          <option value="cafe">☕</option>
-                          <option value="restaurant">🍴</option>
-                          <option value="bar">🍺</option>
-                          <option value="sports">️⚽️</option>
-                        </select>
-                      </div>
-                    </div>
-                    `);
+      <div class="pin-data">
+      <h3>#${pinCount}</h3>
+      <div class="pin-title">
+        <label for="pins-name">Title</label>
+        <input type="text" name="pins-name">
+      </div>
+      <div class="pin-description">
+        <label for="pins-name">Description</label>
+        <textarea class="pin-description-textarea" name="pins-desc"></textarea>
+      </div>
+      <div class="pin-image">
+        <label for="cars">Icon</label>
+        <select name="pins-icon">
+          <option value="cafe">☕</option>
+          <option value="restaurant">🍴</option>
+          <option value="bar">🍺</option>
+          <option value="sports">️⚽️</option>
+        </select>
+      </div>
+      <input type="hidden" id="pins-lat" name="pins-lat" value=${latitude}>
+      <input type="hidden" id="pins-lng" name="pins-lng" value=${longitude}>
+    `);
     return $form;
-  }
+  };
 
-
+  // < div >
+  // </div>
+  // <label for="pins-lat">Lat: ${latitude}</label>
+  // <div>
+  // <label for="pins-lng">Lng: ${longitude}</label>
+  // </div>
 
   function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
