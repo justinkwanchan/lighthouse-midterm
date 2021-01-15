@@ -6,6 +6,18 @@ module.exports = (db) => {
 
   const { generateRandomString, addUser, getUserWithEmail } = require('../public/scripts/helpers');
 
+  router.get("/userView", (req, res) => {
+    db.query(`SELECT * FROM users;`).then(data => {
+      // console.log(data.rows);
+      const user = data.rows.filter(row => row.session_id === req.session.user_id);
+      const templateVars = {
+        user_info: user[0]
+      };
+      res.render("user_show", templateVars);
+    }).catch(err => console.error('query error:', err.stack));
+
+  });
+
   router.get("/:map", (req, res) => {
     let templateVars = {
       id: [],
@@ -27,7 +39,6 @@ module.exports = (db) => {
           const user = data.rows.filter(row => row.session_id === req.session.user_id);
           templateVars.user_info = user[0];
 
-<<<<<<< HEAD
           for (const value of data.rows) {
             console.log(value);
             templateVars.id.push(value.id);
@@ -41,19 +52,6 @@ module.exports = (db) => {
           }
           //console.log(response.rows.length);
           res.render("user_data", templateVars);
-=======
-        for (const value of data.rows) {
-          console.log(value);
-          templateVars.id.push(value.id);
-          templateVars.user_id.push(value.user_id);
-          templateVars.list_name.push(value.list_name);
-          templateVars.name.push(value.name);
-          templateVars.latitude.push(value.latitude);
-          templateVars.longitude.push(value.longitude);
-        }
-        //console.log(response.rows.length);
-        res.render("user_data", templateVars);
->>>>>>> master
 
       }).catch(err => console.error('query error:', err.stack));
   });
@@ -72,11 +70,7 @@ module.exports = (db) => {
         addUser(db, userData);
         req.session.user_id = newSessionID;
 
-<<<<<<< HEAD
-        res.redirect("/userView");
-=======
         res.redirect("/userData/home");
->>>>>>> master
       }
     })
     .catch(err => console.error('query error:', err.stack));
@@ -106,18 +100,6 @@ module.exports = (db) => {
   router.post("/logout", (req, res) => {
     req.session.user_id = null;
     res.redirect("/");
-  });
-
-  router.get("/userView", (req, res) => {
-    db.query(`SELECT * FROM users;`).then(data => {
-      // console.log(data.rows);
-      const user = data.rows.filter(row => row.session_id === req.session.user_id);
-      const templateVars = {
-        user_info: user[0]
-      };
-      res.render("user_show", templateVars);
-    }).catch(err => console.error('query error:', err.stack));
-
   });
 
   return router;
