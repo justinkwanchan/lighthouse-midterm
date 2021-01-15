@@ -27,8 +27,9 @@ $(() => {
 
     $(".form-pins").find(".submit-button").addClass("hide-button");
     $(".form-pins").find(".pins-list").addClass("hide-button");
-    // Listen for click on map
-    google.maps.event.addListener(map, 'click',
+    if($(".form-pins").length) {
+      // Listen for click on map
+      google.maps.event.addListener(map, 'click',
       function (event) {
         // Add marker
         addMarker({ coords: event.latLng });
@@ -40,6 +41,7 @@ $(() => {
         $(".form-pins").find(".pins-list").removeClass("hide-button");
         $(".form-pins").find(".submit-button").removeClass("hide-button");
       })
+    }
 
     // // Array of markers
     // let markers = [
