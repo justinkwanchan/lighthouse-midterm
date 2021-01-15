@@ -14,6 +14,9 @@
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/styles.css" type="text/css" />
 
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
   <!-- App Scripts -->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
@@ -30,8 +33,8 @@
 
   <%- include('partials/_header') %>
 
-    <div class="main-page">
-      <h3>Saved Maps</h3>
+    <div id="maps-list-main" class="main-page">
+      <h2>Saved Maps</h2>
       <table class="table">
         <thead>
           <tr>
@@ -42,9 +45,9 @@
           </tr>
         </thead>
         <tbody>
-          <% for(const map in maps) { %>
+          <% for (const map of maps) { %>
             <tr>
-              <td><%= maps.name %></td>
+              <td><%= map.name %></td>
               <td><form method="GET" action="/userData/<%= maps.id %>/edit"><button type="submit">Show</button></form></td>
               <td><form method="GET" action="/userData/<%= maps.id %>/edit"><button type="submit">Edit</button></form></td>
               <td><form method="POST" action="/userData/<%= maps.id %>/delete?_method=DELETE"><button type="submit">Delete</button></form></td>

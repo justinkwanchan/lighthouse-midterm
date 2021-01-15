@@ -22,6 +22,7 @@ module.exports = (db) => {
           maps: data.rows,
           user_info: data.rows
         };
+        console.log(data.rows[0].name);
         res.render("maps", templateVars);
       }
     })
