@@ -43,7 +43,6 @@ const widgetsRoutes = require("./routes/widgets");
 const favUsers = require("./routes/fav_users");
 const usersDBRoutes = require("./routes/usersdb");
 const mapRoutes = require("./routes/mapRoutes");
-//const editMap = require("./routes/editMap");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -52,17 +51,14 @@ app.use("/api/widgets", widgetsRoutes(db));
 app.use("/userData", favUsers(db));
 app.use("/", usersDBRoutes(db));
 app.use("/maps", mapRoutes(db));
-//app.use("/editMap", editMap(db));
 
 // Note: mount other resources here, using the same pattern above
-
 
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
   db.query(`SELECT * FROM users;`).then(data => {
-    // console.log(data.rows);
     const user = data.rows.filter(row => row.session_id === req.session.user_id);
     const templateVars = {
       user_info: user[0]
