@@ -1,20 +1,8 @@
 $(() => {
-  // $.ajax({
-  //   method: "GET",
-  //   url: "/api/users"
-  // }).done((users) => {
-  //   for(user of users) {
-  //     $("<div>").text(user.name).appendTo($("body"));
-  //   }
-  // });
   // Initialize and add the map
   const initMap = function () {
     // The location of Niagra
     const niagra = { lat: 43.08819077186206, lng: -79.07223055850586 };
-    // Locations of coffee shops in Niagra
-    const coffee_shop_1 = { lat: 43.0958356243389, lng: -79.07055451075264 };
-    const coffee_shop_2 = { lat: 43.08278060767427, lng: -79.08079415535241 };
-    const coffee_shop_3 = { lat: 43.08995795769985, lng: -79.095385372843 };
 
     // Map options
     let options = {
@@ -49,18 +37,8 @@ $(() => {
         })
     }
 
-
-    // // Array of markers
-    // let markers = [
-    //   { coords: coffee_shop_1, iconImage: "../images/free_breakfast-24px.svg", content: '<h2>Italian Ice Cream</h2>' },
-    //   { coords: coffee_shop_2, iconImage: "../images/free_breakfast-24px.svg", content: '<h2>Tim Hortons</h2>' },
-    //   { coords: coffee_shop_3, iconImage: "../images/free_breakfast-24px.svg", content: '<h2>Starbucks</h2>' }
-    // ];
-
-    // // Loop markers
-    // for (const values of markers) {
-    //   addMarker(values);
-    // }
+    // // object structure of markers
+    // let markers = { coords: coffee_shop_1, iconImage: "../images/free_breakfast-24px.svg", content: '<h2>Italian Ice Cream</h2>' };
 
     // Add marker function
     const addMarker = function (props) {
@@ -200,13 +178,6 @@ $(() => {
     `);
     return $form;
   };
-
-  // < div >
-  // </div>
-  // <label for="pins-lat">Lat: ${latitude}</label>
-  // <div>
-  // <label for="pins-lng">Lng: ${longitude}</label>
-  // </div>
 
   function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);

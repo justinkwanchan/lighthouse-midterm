@@ -19,8 +19,8 @@ $(() => {
       arrayOfLat.push(Number($lat[i].defaultValue));
       arrayOfLng.push(Number($lng[i].defaultValue));
     }
-    let avgLat = (arrayOfLat.reduce((a, b) => a + b, 0))/arrayOfLat.length;
-    let avgLng = (arrayOfLng.reduce((a, b) => a + b, 0))/arrayOfLng.length;
+    let avgLat = (arrayOfLat.reduce((a, b) => a + b, 0)) / arrayOfLat.length;
+    let avgLng = (arrayOfLng.reduce((a, b) => a + b, 0)) / arrayOfLng.length;
 
     const coords = { lat: avgLat, lng: avgLng };
     // Map options
@@ -32,12 +32,14 @@ $(() => {
     // The map, centered at average of co-ordinates
     map = new google.maps.Map(document.getElementById("map"), options);
 
-    for (let i = 0; i < $name.length; i++) {
-      // console.log($name[i].defaultValue);
-      // console.log(Number($lat[i].defaultValue));
+    // // object structure of markers
+    // let markers = { coords: coffee_shop_1, iconImage: "../images/free_breakfast-24px.svg", content: '<h2>Italian Ice Cream</h2>' };
 
+
+    for (let i = 0; i < $name.length; i++) {
       let latLng = { lat: Number($lat[i].defaultValue), lng: Number($lng[i].defaultValue) };
-      let marker = {coords: latLng, content: $name[i].defaultValue};
+      let marker = { coords: latLng, content: $name[i].defaultValue };
+
       if ($image[i].defaultValue === "cafe") {
         marker.iconImage = "../images/free_breakfast-24px.svg";
       } else if ($image[i].defaultValue === "restaurant") {
@@ -47,7 +49,6 @@ $(() => {
       } else if ($image[i].defaultValue === "bar") {
         marker.iconImage = "../images/sports_bar-24px.svg";
       }
-
       addMarker(marker);
     }
   }
@@ -75,7 +76,6 @@ $(() => {
         infoWindow.open(map, marker);
       });
     }
-
     return marker;
   }
 
