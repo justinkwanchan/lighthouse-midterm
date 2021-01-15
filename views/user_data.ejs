@@ -37,6 +37,14 @@
           <label for="pins-name">Name: <%= name[i] %></label>
           <input type="hidden" class="pins-name" name="pins-name" value="<%= name[i] %>">
         </div>
+        <div class="pins-description-div">
+          <label for="pins-description">Description: <%= description[i] %></label>
+          <input type="hidden" class="pins-description" name="pins-description" value="<%= description[i] %>">
+        </div>
+        <div class="pins-image-div">
+
+          <input type="hidden" class="pins-image" name="pins-image" value="<%= icon[i] %>">
+        </div>
         <div>
           <label for="pins-lat">Lat: <%= latitude[i] %></label>
           <input type="hidden" class="pins-lat" name="pins-lat" value="<%= latitude[i] %>">
@@ -47,6 +55,7 @@
         </div>
       <% } %>
     </form>
+    <form method="GET" action="/userView"><button class="new-list">New List</button></form>
   </div>
   <div id="map"></div>
   </div>
