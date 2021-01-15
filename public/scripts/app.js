@@ -186,6 +186,12 @@ $(() => {
                         <label for="pins-name">Description</label>
                         <textarea id="test${pinCount}" class="pin-description-textarea" name="text"></textarea>
                       </div>
+                      <div>
+                        <input type="hidden" id="pins-lat" name="pins-lat" value=${latitude}>
+                      </div>
+                      <div>
+                        <input type="hidden" id="pins-lng" name="pins-lng" value=${longitude}>
+                      </div>
                       <div class="pin-image">
                         <label for="cars">Icon</label>
                         <select name="pin-icon">
@@ -200,14 +206,7 @@ $(() => {
     return $form;
   }
 
-  // < div >
-  // <label for="pins-lat">Lat: ${latitude}</label>
-  // <input type="hidden" id="pins-lat" name="pins-lat" value=${latitude}>
-  // </div>
-  // <div>
-  // <label for="pins-lng">Lng: ${longitude}</label>
-  // <input type="hidden" id="pins-lng" name="pins-lng" value=${longitude}>
-  // </div>
+
 
   function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);

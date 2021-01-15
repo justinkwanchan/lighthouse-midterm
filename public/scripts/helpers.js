@@ -33,18 +33,28 @@ const getUserWithEmail = function(data, email) {
 const addPins = function(db, data) {
   console.log("HERE IS THE DATA.....");
   console.log(data);
-  let loopPinsData = function() {
-    for (let i = 0; i < data.title.length; i++) {
-      db.query(`
-      INSERT INTO pins (user_id, list_name, name, latitude, longitude)
-      VALUES ($1, $2, $3, $4, $5)
-      RETURNING *;
-    `, [data.userId, data.list, data.title[i], data.lat[i], data.lng[i]])
-      .then(res => res.rows[0])
-      .catch(err => console.error('query error', err.stack))
-    }
-  }
-  return loopPinsData();
-}
+  db.query(`
+    INSERT INTO maps (user_id, name) VALUES ($1, $2)
+    RETURNING *;
+  `, [data.userId, data.list])
+    .then(res => {
+      console.log(res.rows[0]);
+      console.log("HERE IS THE DATA.....");
+      console.log(data);
+      let loopPinsData = function() {
+        for (let i = 0; i < data.title.length; i++) {
+          db.query(`
+          INSERT INTO pins (map_id, name, description, icon, latitude, longitude)
+          VALUES ($1, $2, $3, $4, $5, $6)
+          RETURNING *;
+        `, [res.rows[0].id, data.title[i], data.desc[i], data.icon[i], data.lat[i], data.lng[i]])
+          .then(res => res.rows[0])
+          .catch(err => console.error('query error', err.stack))
+        }
+      }
+      return loopPinsData();
+    })
+    .catch(err => console.error('query error', err.stack));
+};
 
 module.exports = { generateRandomString, addUser, getUserWithEmail, addPins };
