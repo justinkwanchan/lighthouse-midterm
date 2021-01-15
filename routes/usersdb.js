@@ -6,7 +6,7 @@ module.exports = (db) => {
 
   const { generateRandomString, addUser, getUserWithEmail } = require('../public/scripts/helpers');
 
-  router.get("/listOfMaps", (req, res) => {
+  router.get("/:map", (req, res) => {
     let templateVars = {
       id: [],
       user_id: [],
@@ -21,12 +21,13 @@ module.exports = (db) => {
       SELECT * FROM users
       JOIN maps ON session_id = maps.user_id
       JOIN pins ON maps.id = map_id
-      WHERE user_id = $1;
-      `, [req.session.user_id]).then(data => {
+      WHERE maps.id = $1;
+      `, [req.params.map]).then(data => {
           console.log(data.rows);
           const user = data.rows.filter(row => row.session_id === req.session.user_id);
           templateVars.user_info = user[0];
 
+<<<<<<< HEAD
           for (const value of data.rows) {
             console.log(value);
             templateVars.id.push(value.id);
@@ -40,8 +41,21 @@ module.exports = (db) => {
           }
           //console.log(response.rows.length);
           res.render("user_data", templateVars);
+=======
+        for (const value of data.rows) {
+          console.log(value);
+          templateVars.id.push(value.id);
+          templateVars.user_id.push(value.user_id);
+          templateVars.list_name.push(value.list_name);
+          templateVars.name.push(value.name);
+          templateVars.latitude.push(value.latitude);
+          templateVars.longitude.push(value.longitude);
+        }
+        //console.log(response.rows.length);
+        res.render("user_data", templateVars);
+>>>>>>> master
 
-        }).catch(err => console.error('query error:', err.stack));
+      }).catch(err => console.error('query error:', err.stack));
   });
 
   // Register a new email
@@ -58,7 +72,11 @@ module.exports = (db) => {
         addUser(db, userData);
         req.session.user_id = newSessionID;
 
+<<<<<<< HEAD
         res.redirect("/userView");
+=======
+        res.redirect("/userData/home");
+>>>>>>> master
       }
     })
     .catch(err => console.error('query error:', err.stack));
@@ -78,7 +96,7 @@ module.exports = (db) => {
       } else {
         req.session.user_id = user.session_id;
         //console.log("000000000000000000000000000000");
-        res.redirect("/listOfMaps");
+        res.redirect("/userData/home");
       }
     })
       .catch(err => console.error('query error:', err.stack));
