@@ -42,7 +42,7 @@ const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
 const favUsers = require("./routes/fav_users");
 const usersDBRoutes = require("./routes/usersdb");
-const mapRoutes = require("./routes/maps")
+const mapRoutes = require("./routes/mapRoutes")
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own

@@ -20,13 +20,18 @@ module.exports = (db) => {
     JOIN maps ON maps.id = map_id
     WHERE user_id = $1;
     `, [req.session.user_id])
-      .then(response => {
-        db.query(`SELECT * FROM users;`).then(data => {
-          // console.log(data.rows);
+    .then(response => {
+      db.query(`
+      SELECT * FROM users
+      JOIN maps ON session_id = maps.user_id
+      JOIN pins ON maps.id = map_id;
+      `).then(data => {
+          console.log(data.rows);
           const user = data.rows.filter(row => row.session_id === req.session.user_id);
           templateVars.user_info = user[0];
 
-          for (const value of response.rows) {
+          for (const value of data.rows) {
+            console.log(value);
             templateVars.id.push(value.id);
             templateVars.user_id.push(value.user_id);
             templateVars.list_name.push(value.list_name);
