@@ -12,6 +12,8 @@ module.exports = (db) => {
       user_id: [],
       list_name: [],
       name: [],
+      description: [],
+      icon: [],
       latitude: [],
       longitude: [],
     };
@@ -31,6 +33,8 @@ module.exports = (db) => {
             templateVars.user_id.push(value.user_id);
             templateVars.list_name.push(value.list_name);
             templateVars.name.push(value.name);
+            templateVars.description.push(value.description);
+            templateVars.icon.push(value.icon);
             templateVars.latitude.push(value.latitude);
             templateVars.longitude.push(value.longitude);
           }
