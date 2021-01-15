@@ -9,6 +9,20 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
   overflow-y: hidden;
 
+  .new-list {
+    border-radius: 1.6em;
+    border: none;
+    background-color: #378ae2;
+    margin: 0.9em;
+    padding: 0.9em 3.4em;
+    color: white;
+    font-size: 0.8em;
+    font-weight: bold;
+
+    &:focus {
+      outline: none;
+    }
+  }
   nav {
     position: fixed;
     height: 128px;
