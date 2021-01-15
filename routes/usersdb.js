@@ -17,6 +17,7 @@ module.exports = (db) => {
     };
     db.query(`
     SELECT * FROM pins
+    JOIN maps ON maps.id = map_id
     WHERE user_id = $1;
     `, [req.session.user_id])
       .then(response => {
