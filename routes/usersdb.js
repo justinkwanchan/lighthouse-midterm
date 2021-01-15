@@ -8,7 +8,6 @@ module.exports = (db) => {
 
   router.get("/userView", (req, res) => {
     db.query(`SELECT * FROM users;`).then(data => {
-      // console.log(data.rows);
       const user = data.rows.filter(row => row.session_id === req.session.user_id);
       const templateVars = {
         user_info: user[0]
@@ -35,12 +34,10 @@ module.exports = (db) => {
       JOIN pins ON maps.id = map_id
       WHERE maps.id = $1;
       `, [req.params.map]).then(data => {
-          console.log(data.rows);
           const user = data.rows.filter(row => row.session_id === req.session.user_id);
           templateVars.user_info = user[0];
 
           for (const value of data.rows) {
-            console.log(value);
             templateVars.id.push(value.id);
             templateVars.user_id.push(value.user_id);
             templateVars.list_name.push(value.list_name);
@@ -50,7 +47,6 @@ module.exports = (db) => {
             templateVars.latitude.push(value.latitude);
             templateVars.longitude.push(value.longitude);
           }
-          //console.log(response.rows.length);
           res.render("user_data", templateVars);
 
       }).catch(err => console.error('query error:', err.stack));
@@ -89,7 +85,6 @@ module.exports = (db) => {
         res.status(403).send('<h2>403 - Password does not match</h2>');
       } else {
         req.session.user_id = user.session_id;
-        //console.log("000000000000000000000000000000");
         res.redirect("/userData/home");
       }
     })
