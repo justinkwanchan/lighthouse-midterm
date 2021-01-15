@@ -9,6 +9,8 @@ $(() => {
     let $name = $(".pins-name");
     let $lat = $(".pins-lat");
     let $lng = $(".pins-lng");
+    let $description = $(".pins-description");
+    let $image = $(".pins-image");
 
     // Calculate average of co-ordinates
     let arrayOfLat = [];
@@ -33,8 +35,19 @@ $(() => {
     for (let i = 0; i < $name.length; i++) {
       // console.log($name[i].defaultValue);
       // console.log(Number($lat[i].defaultValue));
+
       let latLng = { lat: Number($lat[i].defaultValue), lng: Number($lng[i].defaultValue) };
       let marker = {coords: latLng, content: $name[i].defaultValue};
+      if ($image[i].defaultValue === "cafe") {
+        marker.iconImage = "../images/free_breakfast-24px.svg";
+      } else if ($image[i].defaultValue === "restaurant") {
+        marker.iconImage = "../images/food_bank-24px.svg";
+      } else if ($image[i].defaultValue === "sports") {
+        marker.iconImage = "../images/sports_soccer-24px.svg";
+      } else if ($image[i].defaultValue === "bar") {
+        marker.iconImage = "../images/sports_bar-24px.svg";
+      }
+
       addMarker(marker);
     }
   }
