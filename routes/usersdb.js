@@ -1,9 +1,44 @@
+const { response } = require('express');
 const express = require('express');
 const router  = express.Router();
 
 module.exports = (db) => {
 
   const { generateRandomString, addUser, getUserWithEmail } = require('../public/scripts/helpers');
+
+  router.get("/listOfMaps", (req, res) => {
+    let templateVars = {
+      id: [],
+      user_id: [],
+      list_name: [],
+      name: [],
+      latitude: [],
+      longitude: [],
+    };
+    db.query(`
+    SELECT * FROM pins
+    WHERE user_id = $1;
+    `, [req.session.user_id])
+      .then(response => {
+        db.query(`SELECT * FROM users;`).then(data => {
+          // console.log(data.rows);
+          const user = data.rows.filter(row => row.session_id === req.session.user_id);
+          templateVars.user_info = user[0];
+
+          for (const value of response.rows) {
+            templateVars.id.push(value.id);
+            templateVars.user_id.push(value.user_id);
+            templateVars.list_name.push(value.list_name);
+            templateVars.name.push(value.name);
+            templateVars.latitude.push(value.latitude);
+            templateVars.longitude.push(value.longitude);
+          }
+          //console.log(response.rows.length);
+          res.render("user_data", templateVars);
+
+        }).catch(err => console.error('query error:', err.stack));
+      });
+  });
 
   // Register a new email
   router.post("/register", (req, res) => {
@@ -38,11 +73,11 @@ module.exports = (db) => {
         res.status(403).send('<h2>403 - Password does not match</h2>');
       } else {
         req.session.user_id = user.session_id;
-
-        res.redirect("/");
+        //console.log("000000000000000000000000000000");
+        res.redirect("/listOfMaps");
       }
     })
-    .catch(err => console.error('query error:', err.stack));
+      .catch(err => console.error('query error:', err.stack));
   });
 
   // Log out

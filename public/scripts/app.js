@@ -8,7 +8,7 @@ $(() => {
   //   }
   // });
   // Initialize and add the map
-  const initMap = function() {
+  const initMap = function () {
     // The location of Niagra
     const niagra = { lat: 43.08819077186206, lng: -79.07223055850586 };
     // Locations of coffee shops in Niagra
@@ -29,24 +29,26 @@ $(() => {
     $(".form-pins").find(".pins-list").addClass("hide-button");
 
     let pinCount = 0;
+    if ($(".form-pins").length) {
+      // Listen for click on map
+      google.maps.event.addListener(map, 'click',
+        function (event) {
+          pinCount++;
 
-    // Listen for click on map
-    google.maps.event.addListener(map, 'click',
-      function (event) {
-        pinCount++;
+          // Add marker
+          addMarker({ coords: event.latLng });
+          // Display latitude and longitude of current marker
+          console.log(JSON.stringify(event.latLng.toJSON()));
+          let lat = JSON.stringify(event.latLng.toJSON().lat);
+          let lng = JSON.stringify(event.latLng.toJSON().lng);
+          $("#pins").append(createForm(lat, lng, pinCount));
+          $(".form-pins").find(".pins-list").removeClass("hide-button");
+          $(".form-pins").find(".submit-button").removeClass("hide-button");
+          $(".form-pins").addClass("pin-info-show");
+          $(".form-pins").removeClass("pin-info-hide");
+        })
+    }
 
-        // Add marker
-        addMarker({ coords: event.latLng });
-        // Display latitude and longitude of current marker
-        console.log(JSON.stringify(event.latLng.toJSON()));
-        let lat = JSON.stringify(event.latLng.toJSON().lat);
-        let lng = JSON.stringify(event.latLng.toJSON().lng);
-        $("#pins").append(createForm(lat, lng, pinCount));
-        $(".form-pins").find(".pins-list").removeClass("hide-button");
-        $(".form-pins").find(".submit-button").removeClass("hide-button");
-        $(".form-pins").addClass("pin-info-show");
-        $(".form-pins").removeClass("pin-info-hide");
-      })
 
     // // Array of markers
     // let markers = [
@@ -61,7 +63,7 @@ $(() => {
     // }
 
     // Add marker function
-    function addMarker(props) {
+    const addMarker = function (props) {
       let marker = new google.maps.Marker({
         position: props.coords,
         map: map
@@ -83,6 +85,7 @@ $(() => {
           infoWindow.open(map, marker);
         });
       }
+      return marker;
     }
 
     // Create the search box and link it to the UI element.
