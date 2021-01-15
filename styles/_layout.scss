@@ -7,8 +7,12 @@ body {
   background-color: #EEE;
   font-size: 24px;
   font-family: 'Source Sans Pro', sans-serif;
+  overflow-y: hidden;
 
   nav {
+    position: fixed;
+    height: 128px;
+    width: 100vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -28,11 +32,9 @@ body {
     display: flex;
 
     #map {
-      height: 90vh;
-      /* The height is 400 pixels */
-      //width: 100%;
-      /* The width is the width of the web page */
-      flex-basis: 75%;
+      margin-top: 128px;
+      height: calc(100vh - 128px);
+      width: 100vw;
       order: 0;
 
       .geolocation {

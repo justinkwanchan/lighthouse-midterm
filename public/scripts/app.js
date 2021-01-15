@@ -8,7 +8,7 @@ $(() => {
   //   }
   // });
   // Initialize and add the map
-  const initMap = function() {
+  const initMap = function () {
     // The location of Niagra
     const niagra = { lat: 43.08819077186206, lng: -79.07223055850586 };
     // Locations of coffee shops in Niagra
@@ -27,21 +27,28 @@ $(() => {
 
     $(".form-pins").find(".submit-button").addClass("hide-button");
     $(".form-pins").find(".pins-list").addClass("hide-button");
-    if($(".form-pins").length) {
+
+    let pinCount = 0;
+    if ($(".form-pins").length) {
       // Listen for click on map
       google.maps.event.addListener(map, 'click',
-      function (event) {
-        // Add marker
-        addMarker({ coords: event.latLng });
-        // Display latitude and longitude of current marker
-        console.log(JSON.stringify(event.latLng.toJSON()));
-        let lat = JSON.stringify(event.latLng.toJSON().lat);
-        let lng = JSON.stringify(event.latLng.toJSON().lng);
-        $(".form-pins-data").prepend(createForm(lat, lng));
-        $(".form-pins").find(".pins-list").removeClass("hide-button");
-        $(".form-pins").find(".submit-button").removeClass("hide-button");
-      })
+        function (event) {
+          pinCount++;
+
+          // Add marker
+          addMarker({ coords: event.latLng });
+          // Display latitude and longitude of current marker
+          console.log(JSON.stringify(event.latLng.toJSON()));
+          let lat = JSON.stringify(event.latLng.toJSON().lat);
+          let lng = JSON.stringify(event.latLng.toJSON().lng);
+          $("#pins").append(createForm(lat, lng, pinCount));
+          $(".form-pins").find(".pins-list").removeClass("hide-button");
+          $(".form-pins").find(".submit-button").removeClass("hide-button");
+          $(".form-pins").addClass("pin-info-show");
+          $(".form-pins").removeClass("pin-info-hide");
+        })
     }
+
 
     // // Array of markers
     // let markers = [
@@ -55,31 +62,31 @@ $(() => {
     //   addMarker(values);
     // }
 
-  // Add marker function
-  const addMarker = function(props) {
-    let marker = new google.maps.Marker({
-      position: props.coords,
-      map: map
-    });
-
-    // Check for custom icon
-    if (props.iconImage) {
-      marker.setIcon(props.iconImage);
-    }
-
-    // Check content
-    if (props.content) {
-      // Add title
-      let infoWindow = new google.maps.InfoWindow({
-        content: props.content
+    // Add marker function
+    const addMarker = function (props) {
+      let marker = new google.maps.Marker({
+        position: props.coords,
+        map: map
       });
 
-      marker.addListener('click', function () {
-        infoWindow.open(map, marker);
-      });
+      // Check for custom icon
+      if (props.iconImage) {
+        marker.setIcon(props.iconImage);
+      }
+
+      // Check content
+      if (props.content) {
+        // Add title
+        let infoWindow = new google.maps.InfoWindow({
+          content: props.content
+        });
+
+        marker.addListener('click', function () {
+          infoWindow.open(map, marker);
+        });
+      }
+      return marker;
     }
-    return marker;
-  }
 
     // Create the search box and link it to the UI element.
     const input = document.getElementById("search");
@@ -167,23 +174,40 @@ $(() => {
     });
   }
   initMap();
-  const createForm = function(data1, data2) {
+  const createForm = function (latitude, longitude, pinCount) {
     let $form = $(`
-                    <div>
-                      <label for="pins-name">Name: </label>
-                      <input type="text" name="pins-name" id="pins-name" placeholder="Enter name">
-                    </div>
-                    <div>
-                      <label for="pins-lat">Lat: ${data1}</label>
-                      <input type="hidden" id="pins-lat" name="pins-lat" value=${data1}>
-                    </div>
-                    <div>
-                      <label for="pins-lng">Lng: ${data2}</label>
-                      <input type="hidden" id="pins-lng" name="pins-lng" value=${data2}>
+                    <div class="pin-data">
+                      <h3>#${pinCount}</h3>
+                      <div class="pin-title">
+                        <label for="pins-name">Title</label>
+                        <input type="text" name="pins-name">
+                      </div>
+                      <div class="pin-description">
+                        <label for="pins-name">Description</label>
+                        <textarea id="test${pinCount}" class="pin-description-textarea" name="text"></textarea>
+                      </div>
+                      <div class="pin-image">
+                        <label for="cars">Icon</label>
+                        <select name="pin-icon">
+                          <option value="cafe">☕</option>
+                          <option value="restaurant">🍴</option>
+                          <option value="bar">🍺</option>
+                          <option value="sports">️⚽️</option>
+                        </select>
+                      </div>
                     </div>
                     `);
     return $form;
   }
+
+  // < div >
+  // <label for="pins-lat">Lat: ${latitude}</label>
+  // <input type="hidden" id="pins-lat" name="pins-lat" value=${latitude}>
+  // </div>
+  // <div>
+  // <label for="pins-lng">Lng: ${longitude}</label>
+  // <input type="hidden" id="pins-lng" name="pins-lng" value=${longitude}>
+  // </div>
 
   function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
