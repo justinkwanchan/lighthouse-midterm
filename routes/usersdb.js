@@ -6,7 +6,7 @@ module.exports = (db) => {
 
   const { generateRandomString, addUser, getUserWithEmail } = require('../public/scripts/helpers');
 
-  router.get("/listOfMaps", (req, res) => {
+  router.get("/:map", (req, res) => {
     let templateVars = {
       id: [],
       user_id: [],
@@ -19,8 +19,8 @@ module.exports = (db) => {
       SELECT * FROM users
       JOIN maps ON session_id = maps.user_id
       JOIN pins ON maps.id = map_id
-      WHERE user_id = $1;
-      `, [req.session.user_id]).then(data => {
+      WHERE maps.id = $1;
+      `, [req.params.map]).then(data => {
           console.log(data.rows);
           const user = data.rows.filter(row => row.session_id === req.session.user_id);
           templateVars.user_info = user[0];

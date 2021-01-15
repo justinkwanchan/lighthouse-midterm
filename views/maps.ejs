@@ -48,9 +48,9 @@
           <% for (const map of maps) { %>
             <tr>
               <td><%= map.name %></td>
-              <td><form method="GET" action="/userData/<%= maps.id %>/edit"><button type="submit">Show</button></form></td>
-              <td><form method="GET" action="/userData/<%= maps.id %>/edit"><button type="submit">Edit</button></form></td>
-              <td><form method="POST" action="/userData/<%= maps.id %>/delete?_method=DELETE"><button type="submit">Delete</button></form></td>
+              <td><form method="GET" action="/<%= map.id %>"><button type="submit">Show</button></form></td>
+              <td><form method="GET" action="/userData/<%= map.id %>/edit"><button type="submit">Edit</button></form></td>
+              <td><form method="POST" action="/userData/<%= map.id %>/delete?_method=DELETE"><button type="submit">Delete</button></form></td>
             </tr>
           <% } %>
         </tbody>

@@ -49,7 +49,7 @@ module.exports = (db) => {
     console.log("*************************************");
     console.log(dataBase);
     addPins(db, dataBase);
-    res.redirect("/");
+    res.redirect("/userData/home");
   });
   return router;
 };
