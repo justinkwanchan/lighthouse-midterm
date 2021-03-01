@@ -5,22 +5,22 @@ Wiki Map is a full stack web application built with Node and Express that allows
 ## Screenshots
 
 ### Home Page
-!["Screenshot of Home Page"]()
+!["Screenshot of Home Page"](https://github.com/justinkwanchan/lighthouse-midterm/blob/master/public/images/screenshots/midterm_home.png?raw=true)
 
 ### Login Page
-!["Screenshot of Login Page"]()
+!["Screenshot of Login Page"](https://github.com/justinkwanchan/lighthouse-midterm/blob/master/public/images/screenshots/midterm_login.png?raw=true)
 
 ### Register Page
-!["Screenshot of Register Page"]()
+!["Screenshot of Register Page"](https://github.com/justinkwanchan/lighthouse-midterm/blob/master/public/images/screenshots/midterm_signup.png?raw=true)
 
 ### Google Search Bar
-!["Screenshot of Google Search Bar"]()
+!["Screenshot of Google Search Bar"](https://github.com/justinkwanchan/lighthouse-midterm/blob/master/public/images/screenshots/midterm_search_bar.png?raw=true)
 
 ### Add Location Page
-!["Screenshot of Add Location"]()
+!["Screenshot of Add Location"](https://github.com/justinkwanchan/lighthouse-midterm/blob/master/public/images/screenshots/midterm_saved_pin.png?raw=true)
 
 ### Saved Location List
-!["Screenshot of Saved Location List"]()
+!["Screenshot of Saved Location List"](https://github.com/justinkwanchan/lighthouse-midterm/blob/master/public/images/screenshots/midterm_saved_list.png?raw=true)
 
 ## Dependencies
 
